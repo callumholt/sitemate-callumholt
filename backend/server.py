@@ -1,10 +1,17 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+CORS(app)
+
 
 issues = [
     {"id": 1, "title": "Issue 1", "description": "This is issue 1"},
-    {"id": 2, "title": "Issue 2", "description": "This is issue 2"}
+    {"id": 2, "title": "Issue 2", "description": "This is issue 2"},
+    {"id": 3, "title": "Issue 3", "description": "This is issue 3"},
+
+
 ]
 
 @app.route('/issues', methods=['GET'])
