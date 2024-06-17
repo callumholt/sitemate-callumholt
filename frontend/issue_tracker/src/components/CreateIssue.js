@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { TextField, Button, Typography, Box } from "@mui/material";
 
 const CreateIssue = () => {
   const [issue, setIssue] = useState({ title: "", description: "" });
@@ -20,24 +21,26 @@ const CreateIssue = () => {
   };
 
   return (
-    <div>
-      <h2>Create Issue</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Title"
-          value={issue.title}
-          onChange={(e) => setIssue({ ...issue, title: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Description"
-          value={issue.description}
-          onChange={(e) => setIssue({ ...issue, description: e.target.value })}
-        />
-        <button type="submit">Create</button>
-      </form>
-    </div>
+    <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+      <Typography variant="h6">Create Issue</Typography>
+      <TextField
+        label="Title"
+        value={issue.title}
+        onChange={(e) => setIssue({ ...issue, title: e.target.value })}
+        fullWidth
+        margin="normal"
+      />
+      <TextField
+        label="Description"
+        value={issue.description}
+        onChange={(e) => setIssue({ ...issue, description: e.target.value })}
+        fullWidth
+        margin="normal"
+      />
+      <Button type="submit" variant="contained" color="primary">
+        Create
+      </Button>
+    </Box>
   );
 };
 

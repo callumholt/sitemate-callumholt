@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { TextField, Button, Typography, Box } from "@mui/material";
 
 const DeleteIssue = () => {
   const [id, setId] = useState("");
@@ -16,18 +17,19 @@ const DeleteIssue = () => {
   };
 
   return (
-    <div>
-      <h2>Delete Issue</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="ID"
-          value={id}
-          onChange={(e) => setId(e.target.value)}
-        />
-        <button type="submit">Delete</button>
-      </form>
-    </div>
+    <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+      <Typography variant="h6">Delete Issue</Typography>
+      <TextField
+        label="ID"
+        value={id}
+        onChange={(e) => setId(e.target.value)}
+        fullWidth
+        margin="normal"
+      />
+      <Button type="submit" variant="contained" color="primary">
+        Delete
+      </Button>
+    </Box>
   );
 };
 

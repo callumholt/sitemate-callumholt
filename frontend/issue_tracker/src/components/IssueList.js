@@ -1,4 +1,12 @@
 import React, { useEffect, useState } from "react";
+import {
+  Button,
+  Typography,
+  List,
+  ListItem,
+  ListItemText,
+  Box,
+} from "@mui/material";
 
 const IssueList = () => {
   const [issues, setIssues] = useState([]);
@@ -15,18 +23,40 @@ const IssueList = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Issues</h2>
-      <button onClick={fetchIssues}>Retrieve Issues</button>
-      <ul>
+    <Box>
+      <Typography variant="h6">Issues</Typography>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={fetchIssues}
+        sx={{ my: 2 }}
+      >
+        Retrieve Issues
+      </Button>
+      <List>
         {issues.map((issue) => (
-          <li key={issue.id}>
-            id: {issue.id} - title: {issue.title} - description:{" "}
-            {issue.description}
-          </li>
+          <ListItem
+            key={issue.id}
+            sx={{ mb: 2, p: 2, border: "1px solid #ccc", borderRadius: "8px" }}
+          >
+            <ListItemText
+              primary={`ID: ${issue.id}`}
+              secondary={
+                <>
+                  <Typography component="span" variant="body2">
+                    <strong>Title:</strong> {issue.title}
+                  </Typography>
+                  <br />
+                  <Typography component="span" variant="body2">
+                    <strong>Description:</strong> {issue.description}
+                  </Typography>
+                </>
+              }
+            />
+          </ListItem>
         ))}
-      </ul>
-    </div>
+      </List>
+    </Box>
   );
 };
 

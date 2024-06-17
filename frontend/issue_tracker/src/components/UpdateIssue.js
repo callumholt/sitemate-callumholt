@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { TextField, Button, Typography, Box } from "@mui/material";
 
 const UpdateIssue = () => {
   const [issue, setIssue] = useState({ id: "", title: "", description: "" });
@@ -20,30 +21,33 @@ const UpdateIssue = () => {
   };
 
   return (
-    <div>
-      <h2>Update Issue</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="ID"
-          value={issue.id}
-          onChange={(e) => setIssue({ ...issue, id: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Title"
-          value={issue.title}
-          onChange={(e) => setIssue({ ...issue, title: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Description"
-          value={issue.description}
-          onChange={(e) => setIssue({ ...issue, description: e.target.value })}
-        />
-        <button type="submit">Update</button>
-      </form>
-    </div>
+    <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+      <Typography variant="h6">Update Issue</Typography>
+      <TextField
+        label="ID"
+        value={issue.id}
+        onChange={(e) => setIssue({ ...issue, id: e.target.value })}
+        fullWidth
+        margin="normal"
+      />
+      <TextField
+        label="Title"
+        value={issue.title}
+        onChange={(e) => setIssue({ ...issue, title: e.target.value })}
+        fullWidth
+        margin="normal"
+      />
+      <TextField
+        label="Description"
+        value={issue.description}
+        onChange={(e) => setIssue({ ...issue, description: e.target.value })}
+        fullWidth
+        margin="normal"
+      />
+      <Button type="submit" variant="contained" color="primary">
+        Update
+      </Button>
+    </Box>
   );
 };
 
