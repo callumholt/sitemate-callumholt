@@ -1,1 +1,0 @@
-# sitemate_challenge
