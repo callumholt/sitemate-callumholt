@@ -5,7 +5,6 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-
 issues = [
     {"id": 1, "title": "Issue 1", "description": "This is issue 1"},
     {"id": 2, "title": "Issue 2", "description": "This is issue 2"},
@@ -36,8 +35,14 @@ def update_issue(id):
 @app.route('/issues/<int:id>', methods=['DELETE'])
 def delete_issue(id):
     global issues
-    issues = [issue for issue in issues if issue["id"] != id]
-    return jsonify({"message": "Issue deleted"}), 200
+    id = str(id)
+    issue_index = next((index for index, issue in enumerate(issues) if str(issue["id"]) == id), -1)
+    if issue_index != -1:
+        deleted_issue = issues.pop(issue_index)
+        return jsonify({"message": "Issue deleted", "issue": deleted_issue}), 200
+    return jsonify({"message": "Issue not found"}), 404
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
